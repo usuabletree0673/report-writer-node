@@ -1,0 +1,80 @@
+# Report Writer Node
+
+## Section 1: For Recruiters & Strategy Leads
+
+### What It Is  
+A lightweight AI-powered tool that transforms structured data (like CSVs or operational tables) into clean, decision-ready reports using OpenAI’s GPT models. Designed to cut report writing time from hours to seconds.
+
+### Why It Matters  
+Most teams waste time manually converting performance data into readable updates. This node auto-generates:
+- Executive summaries
+- Weekly operational briefs
+- Change-over-time narratives
+
+It bridges the gap between raw data and usable communication — especially useful in environments with high reporting overhead or limited analyst support.
+
+### Problem It Solves  
+- Analysts stuck doing repetitive report writing  
+- Teams lacking time to summarize data across departments  
+- Managers needing clarity without deep spreadsheet dives
+
+### Who Would Use This  
+- Ops leads, product managers, finance analysts, internal comms  
+- Any org with recurring reporting needs that pull from tabular data
+
+### What Decisions It Enables  
+- “What changed since last week?”  
+- “What should I pay attention to in this report?”  
+- “Is this performance data within normal bounds?”
+
+---
+
+## Section 2: For Technical Reviewers
+
+### Data Sources  
+- Accepts CSV uploads via Streamlit  
+- Tested with synthetic and real business performance data  
+- Columns must include at least one datetime or version-tracking field for time-based comparison
+
+### Architecture  
+```plaintext
+[User Upload CSV]
+    ↓
+[pandas Normalization]
+    ↓
+[Prompt Template Constructor]
+    ↓
+[OpenAI GPT-4 API]
+    ↓
+[Report Output Formatter]
+    ↓
+[Streamlit Display + Export]
+Frontend: Streamlit (app.py)
+
+Backend: Python modules (utils/analysis.py)
+
+LLM: OpenAI GPT-4, with system prompts customized per report type
+
+## Models & Logic
+
+Templates adapt for summary, trend shift, or item-level breakdown
+
+Prompts structured to reduce hallucination and increase precision
+
+Optional logic fork for multi-report output types (in development)
+
+## Tradeoffs
+
+Depends on clean, labeled input columns
+
+Not yet connected to live data sources — file uploads only
+
+Interpretability prioritized over exhaustiveness
+
+## Known Limitations
+
+No authentication layer — not production-secure
+
+Reports may be generic if context columns are missing
+
+GPT-4 output requires light review before final delivery in enterprise environments
