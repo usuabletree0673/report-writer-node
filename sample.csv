@@ -1,0 +1,6 @@
+name,age,department,salary,remote
+Alice,29,Engineering,85000,True
+Bob,41,Marketing,62000,False
+Clara,35,Engineering,91000,True
+Daniel,28,Design,57000,False
+Eva,32,HR,60000,True
